@@ -128,11 +128,11 @@ namespace uNet.Client
         }
         public bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            // 		"8D13532A207D05A60A0329788C9F34CF7D04B01C"
             var certificateX5092 = certificate as X509Certificate2;
             if (certificateX5092 == null) return false;
 
-            if (certificateX5092.Thumbprint == Settings.SSLServerCertIdentity.Thumbprint && certificateX5092.SubjectName.Name == Settings.SSLServerCertIdentity.CertName) return true;
+            if (certificateX5092.Thumbprint == Settings.SSLServerCertIdentity.Thumbprint && certificateX5092.SubjectName.Name == Settings.SSLServerCertIdentity.CertName
+                && certificateX5092.NotAfter >= DateTime.Now) return true;
 
             return false;
         }

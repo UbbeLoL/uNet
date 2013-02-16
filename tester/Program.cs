@@ -22,7 +22,7 @@ namespace tester
             };
 
             Thread.Sleep(2000);
-            var cl = new uNetClient("192.168.0.103", 1337,
+            var cl = new uNetClient("127.0.0.1", 1337,
                 new ClientSettings(new List<IPacket>(), false));
 
             cl.OnPacketSent += (o, e) => Console.WriteLine("Sent {0} bytes...", e.RawPacketSize);
